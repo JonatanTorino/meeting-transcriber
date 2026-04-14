@@ -1,0 +1,22 @@
+# .NET build artifacts
+bin/
+obj/
+
+# Rider/VS
+.vs/
+.idea/
+*.user
+*.suo
+
+# Logs (generated at runtime)
+MeetingTranscriber/logs/
+
+# FFmpeg binaries (downloaded at runtime by Xabe.FFmpeg.Downloader)
+MeetingTranscriber/tools/
+
+# User secrets
+**/secrets.json
+
+# OS
+.DS_Store
+Thumbs.db
