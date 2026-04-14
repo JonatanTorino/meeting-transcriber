@@ -1,7 +1,7 @@
-using MeetingTranscriber.Audio;
-using MeetingTranscriber.Configuration;
-using MeetingTranscriber.FileWatcher;
-using MeetingTranscriber.Pipeline;
+using AudioExtractor.Audio;
+using AudioExtractor.Configuration;
+using AudioExtractor.FileWatcher;
+using AudioExtractor.Pipeline;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
@@ -67,7 +67,7 @@ try
             // Core components
             services.AddSingleton<FileLockChecker>();
             services.AddSingleton<FailedFileHandler>();
-            services.AddSingleton<IAudioExtractor, AudioExtractor>();
+            services.AddSingleton<IAudioExtractor, FfmpegAudioExtractor>();
 
             // Hosted services (producer + consumer)
             services.AddHostedService<FileWatcherService>();

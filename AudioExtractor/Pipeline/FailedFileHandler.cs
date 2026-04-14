@@ -1,8 +1,8 @@
-using MeetingTranscriber.Configuration;
+using AudioExtractor.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace MeetingTranscriber.Pipeline;
+namespace AudioExtractor.Pipeline;
 
 public class FailedFileHandler
 {

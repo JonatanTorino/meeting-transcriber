@@ -1,4 +1,4 @@
-namespace MeetingTranscriber.Configuration;
+namespace AudioExtractor.Configuration;
 
 public class PipelineOptions
 {

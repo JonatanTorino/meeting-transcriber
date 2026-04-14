@@ -1,10 +1,10 @@
-using MeetingTranscriber.Configuration;
+using AudioExtractor.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Threading.Channels;
 
-namespace MeetingTranscriber.FileWatcher;
+namespace AudioExtractor.FileWatcher;
 
 public class FileWatcherService : BackgroundService
 {

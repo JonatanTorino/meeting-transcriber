@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Options;
 
-namespace MeetingTranscriber.Configuration;
+namespace AudioExtractor.Configuration;
 
 public class PipelineOptionsValidator : IValidateOptions<PipelineOptions>
 {

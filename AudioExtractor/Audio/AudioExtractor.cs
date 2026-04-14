@@ -1,16 +1,16 @@
-using MeetingTranscriber.Configuration;
+using AudioExtractor.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Xabe.FFmpeg;
 
-namespace MeetingTranscriber.Audio;
+namespace AudioExtractor.Audio;
 
-public class AudioExtractor : IAudioExtractor
+public class FfmpegAudioExtractor : IAudioExtractor
 {
     private readonly PipelineOptions _options;
-    private readonly ILogger<AudioExtractor> _logger;
+    private readonly ILogger<FfmpegAudioExtractor> _logger;
 
-    public AudioExtractor(IOptions<PipelineOptions> options, ILogger<AudioExtractor> logger)
+    public FfmpegAudioExtractor(IOptions<PipelineOptions> options, ILogger<FfmpegAudioExtractor> logger)
     {
         _options = options.Value;
         _logger = logger;

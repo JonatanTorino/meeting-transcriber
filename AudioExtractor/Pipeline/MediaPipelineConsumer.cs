@@ -1,11 +1,11 @@
-using MeetingTranscriber.Audio;
-using MeetingTranscriber.Configuration;
+using AudioExtractor.Audio;
+using AudioExtractor.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Threading.Channels;
 
-namespace MeetingTranscriber.Pipeline;
+namespace AudioExtractor.Pipeline;
 
 public class MediaPipelineConsumer : BackgroundService
 {

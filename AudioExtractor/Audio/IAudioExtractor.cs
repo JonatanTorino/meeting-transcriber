@@ -1,4 +1,4 @@
-namespace MeetingTranscriber.Audio;
+namespace AudioExtractor.Audio;
 
 public interface IAudioExtractor
 {
