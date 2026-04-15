@@ -1,0 +1,5 @@
+{
+  "enabledPlugins": {
+    "agent-mermaid-diagram-specialist@agent-toolkit": true
+  }
+}
