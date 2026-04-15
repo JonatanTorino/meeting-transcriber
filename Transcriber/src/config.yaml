@@ -1,0 +1,125 @@
+# ── Transcriber — configuración principal ─────────────────────────────────────
+#
+# default_implementation: qué implementación usa el watcher automático.
+# default_format: formato de salida por defecto (txt | srt | vtt | json).
+# paths.input: directorio donde AudioExtractor deposita los .wav finales.
+#
+# Para agregar una implementación nueva: copiá cualquier bloque de abajo
+# y ajustá engine/model/device/compute_type según corresponda.
+
+default_implementation: faster-whisper-turbo
+default_format: txt
+
+paths:
+  input:          ../AudioExtractor/output   # donde AudioExtractor deja los .wav
+  transcriptions: ./transcriptions           # salidas de texto
+  metadata:       ./metadata                 # JSON de metadatos por transcripción
+
+# ── Implementaciones disponibles ──────────────────────────────────────────────
+
+implementations:
+
+  # faster-whisper ─────────────────────────────────────────────────────────────
+  faster-whisper-tiny:
+    engine:           faster-whisper
+    model:            tiny
+    device:           cpu
+    compute_type:     int8
+    beam_size:        5
+    language:         es
+    vad_filter:       true
+    vad_min_silence_ms: 500
+
+  faster-whisper-small:
+    engine:           faster-whisper
+    model:            small
+    device:           cpu
+    compute_type:     int8
+    beam_size:        5
+    language:         es
+    vad_filter:       true
+    vad_min_silence_ms: 500
+
+  faster-whisper-medium:
+    engine:           faster-whisper
+    model:            medium
+    device:           cpu
+    compute_type:     int8
+    beam_size:        5
+    language:         es
+    vad_filter:       true
+    vad_min_silence_ms: 500
+
+  faster-whisper-turbo:
+    engine:           faster-whisper
+    model:            turbo
+    device:           cpu
+    compute_type:     int8
+    beam_size:        5
+    language:         es
+    vad_filter:       true
+    vad_min_silence_ms: 500
+
+  faster-whisper-large-v3:
+    engine:           faster-whisper
+    model:            large-v3
+    device:           cpu
+    compute_type:     int8
+    beam_size:        5
+    language:         es
+    vad_filter:       true
+    vad_min_silence_ms: 500
+
+  # openai-whisper ─────────────────────────────────────────────────────────────
+  openai-whisper-tiny:
+    engine:     openai-whisper
+    model:      tiny
+    device:     cpu
+    language:   es
+    beam_size:  5
+
+  openai-whisper-small:
+    engine:     openai-whisper
+    model:      small
+    device:     cpu
+    language:   es
+    beam_size:  5
+
+  openai-whisper-medium:
+    engine:     openai-whisper
+    model:      medium
+    device:     cpu
+    language:   es
+    beam_size:  5
+
+  openai-whisper-turbo:
+    engine:     openai-whisper
+    model:      turbo
+    device:     cpu
+    language:   es
+    beam_size:  5
+
+  # whisper-cpp ────────────────────────────────────────────────────────────────
+  whisper-cpp-tiny:
+    engine:     whisper-cpp
+    model:      tiny
+    language:   es
+    n_threads:  4
+
+  whisper-cpp-small:
+    engine:     whisper-cpp
+    model:      small
+    language:   es
+    n_threads:  4
+
+  whisper-cpp-medium:
+    engine:     whisper-cpp
+    model:      medium
+    language:   es
+    n_threads:  4
+
+  whisper-cpp-large-v3:
+    engine:     whisper-cpp
+    model:      large-v3
+    language:   es
+    n_threads:  4
