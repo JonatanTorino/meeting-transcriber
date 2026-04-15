@@ -1,6 +1,6 @@
-# Meeting Transcriber — Audio Pipeline
+# AudioExtractor
 
-A Windows background service that watches a directory for audio/video files and automatically extracts the audio as a **WAV (16 kHz, Mono, PCM 16-bit)** file — optimised for Whisper / Scriberr transcription engines.
+A .NET 9 Windows background service that watches a directory for audio/video files and extracts the audio as a **WAV (16 kHz, Mono, PCM 16-bit)** — optimised for Whisper transcription.
 
 ## Quick Start
 
@@ -10,7 +10,7 @@ A Windows background service that watches a directory for audio/video files and 
      "RootPath": "C:\\MeetingTranscriber"
    }
    ```
-   The service will auto-create `input/`, `output/`, `processed/` and `failed/` inside that root.
+   The service auto-creates `input/`, `output/`, `processed/`, and `failed/` inside that root.
 
 2. **Run**:
    ```bash
@@ -37,10 +37,10 @@ A Windows background service that watches a directory for audio/video files and 
 ## Requirements
 
 - .NET 9 SDK
-- Windows 10/11 (FileSystemWatcher + FFmpeg binaries)
+- Windows 10/11
 - Internet access on first run (FFmpeg auto-download)
 
 ## Further Reading
 
-- [Configuration reference](configuration.md)
-- [Architecture overview](architecture.md)
+- [Configuration reference](docs/configuration.md)
+- [Architecture overview](docs/architecture.md)
