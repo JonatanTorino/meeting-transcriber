@@ -45,12 +45,16 @@ public class MediaPipelineConsumer : BackgroundService
     {
         _logger.LogInformation("Processing: {File}", sourcePath);
 
-        var baseName = Path.GetFileNameWithoutExtension(sourcePath);
+        var baseName  = Path.GetFileNameWithoutExtension(sourcePath);
+        var tmpPath   = Path.Combine(_options.ResolvedOutputPath, baseName + ".wav.tmp");
         var outputPath = Path.Combine(_options.ResolvedOutputPath, baseName + ".wav");
 
         try
         {
-            await _extractor.ExtractAsync(sourcePath, outputPath, ct);
+            await _extractor.ExtractAsync(sourcePath, tmpPath, ct);
+
+            // Atomic rename: Python watcher only sees a complete .wav, never a partial one.
+            File.Move(tmpPath, outputPath, overwrite: true);
 
             var destPath = Path.Combine(_options.ResolvedProcessedPath, Path.GetFileName(sourcePath));
             File.Move(sourcePath, destPath, overwrite: true);
@@ -60,11 +64,19 @@ public class MediaPipelineConsumer : BackgroundService
         catch (OperationCanceledException)
         {
             _logger.LogWarning("Processing cancelled for: {File}", sourcePath);
+            TryDeleteTmp(tmpPath);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Extraction failed for: {File}", sourcePath);
+            TryDeleteTmp(tmpPath);
             await _failedHandler.HandleAsync(sourcePath, ex);
         }
+    }
+
+    private void TryDeleteTmp(string path)
+    {
+        try { if (File.Exists(path)) File.Delete(path); }
+        catch (Exception ex) { _logger.LogWarning(ex, "Could not delete temporary file: {Path}", path); }
     }
 }
